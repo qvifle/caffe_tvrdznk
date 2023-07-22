@@ -1,20 +1,41 @@
 import Image from "next/image";
+import { second_font } from "./fonts";
+import Type from "@/components/menu/Type";
+import Menu from "@/components/menu/Menu";
+import Navigation from "@/components/menu/Navigation";
+import Map from "./Map";
+import start from "./Mapgl";
+import Mapgl from "./Mapgl";
+import Contact from "./Contact";
 
 export default function Home() {
   return (
     <>
-      <div className="container flex h-[825px]">
-        <div className="w-3/5 h-full flex flex-col justify-center">
-          <h1 className="text-[96px] leading-[130px] font-bold mb-[16px]">
+      <section className="bg-[url('/images/bg.jpg')] bg-top bg-cover  h-[961px] w-full bg-fixed ">
+        <div className="h-full w-full flex items-center justify-center flex-col bg-[#00000061] ">
+          <h1
+            className={`${second_font.className} font-bold text-[96px] text-light leading-[120px]`}
+          >
             Твердый Знак
           </h1>
-          <p className="text-[64px] leading-[50px] italic text-light bg-primary w-fit p-3 rounded-tl-2xl rounded-bl-2xl">- кофе без лишних  гласных.</p>
+          {/* <h3 className="ml-[700px] text-[24px] bg-light leading-[24px] p-5 italic">- кофе без лишних гласных.</h3> */}
+          <Type />
         </div>
+      </section>
 
-        <div className="relative w-[700px] h-[825px]">
-          <Image src={"/images/hero.jpg"} fill={true} alt={"hero"} />
+      <section>
+        <div className="container ">
+          <h2
+            className={`text-[64px] underline underline-offset-8 decoration-2 text-center w-full leading-[72px] mt-[64px] mb-[72px] ${second_font.className} font-semibold`}
+          >
+            Меню
+          </h2>
+          <Navigation />
+          <Menu />
         </div>
-      </div>
+        <Map />
+        <Contact />
+      </section>
     </>
   );
 }

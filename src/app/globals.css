@@ -2,6 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+::selection {
+  background: rgb(96 165 250);
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  color: inherit;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #e5e5e5;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #292929;
+  transition: all 0.3s linear;
+  border-radius: 16px;
+}
+
 * {
   @apply text-base font-normal text-dark dark:text-light;
 }
@@ -14,10 +35,108 @@
   @apply max-w-[90rem] mx-auto;
 }
 
-.nav_li {
-  @apply font-medium hover:text-light hover:bg-dark p-2 rounded-xl duration-100;
+.nav_li_dark {
+  @apply font-medium text-light hover:bg-light hover:text-dark p-2 rounded-xl duration-100;
+}
+
+.nav_li_light {
+  @apply font-medium text-dark hover:bg-dark hover:text-light p-2 rounded-xl duration-100;
 }
 
 .footer_li {
   @apply font-medium text-light hover:text-dark hover:bg-light p-2 rounded-xl duration-100;
+}
+
+.button_dish {
+  @apply py-2 text-[24px] text-light bg-dark border border-dark duration-100 rounded-xl hover:text-dark hover:bg-light;
+}
+
+
+
+
+.drawer-side {
+  pointer-events: none;
+
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  grid-column-start: 1;
+  grid-row-start: 1;
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  grid-template-rows: repeat(1, minmax(0, 1fr));
+  align-items: flex-start;
+  justify-items: start;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  height: 100vh;
+  height: 100dvh;
+  scrollbar-width: none;
+}
+.drawer-side::-webkit-scrollbar {
+  display: none;
+}
+.drawer-side > .drawer-overlay {
+  position: sticky;
+  top: 0px;
+  place-self: stretch;
+  cursor: pointer;
+  background-color: transparent;
+  transition: background-color 0.2s cubic-bezier(0, 0, 0.58, 1);
+}
+.drawer-side > * {
+  grid-column-start: 1;
+  grid-row-start: 1;
+}
+.drawer-side > *:not(.drawer-overlay) {
+  transition: transform 0.4s cubic-bezier(0, 0, 0.58, 1);
+  transform: translateX(-100%);
+}
+[dir="rtl"] .drawer-side > *:not(.drawer-overlay) {
+  transform: translateX(100%);
+}
+.drawer-toggle:checked ~ .drawer-side {
+  pointer-events: auto;
+  visibility: visible;
+}
+.drawer-toggle:checked ~ .drawer-side > *:not(.drawer-overlay) {
+  transform: translateX(0%);
+}
+.drawer-end .drawer-toggle ~ .drawer-side {
+  justify-items: end;
+}
+.drawer-end .drawer-toggle ~ .drawer-side > *:not(.drawer-overlay) {
+  transform: translateX(100%);
+}
+[dir="rtl"] .drawer-end .drawer-toggle ~ .drawer-side > *:not(.drawer-overlay) {
+  transform: translateX(-100%);
+}
+.drawer-end .drawer-toggle:checked ~ .drawer-side > *:not(.drawer-overlay) {
+  transform: translateX(0%);
+}
+.drawer-toggle:checked ~ .drawer-side > .drawer-overlay {
+  background-color: hsl(0 0% 0%/0.4);
+}
+.drawer-open > .drawer-toggle ~ .drawer-side {
+  pointer-events: auto;
+  visibility: visible;
+  position: sticky;
+  display: block;
+  width: auto;
+  overscroll-behavior: auto;
+}
+.drawer-open > .drawer-toggle ~ .drawer-side > *:not(.drawer-overlay) {
+  transform: translateX(0%);
+}
+[dir="rtl"] .drawer-open > .drawer-toggle ~ .drawer-side > *:not(.drawer-overlay) {
+  transform: translateX(0%);
+}
+.drawer-open > .drawer-toggle:checked ~ .drawer-side {
+  pointer-events: auto;
+  visibility: visible;
+}
+.drawer-open > .drawer-toggle ~ .drawer-side > .drawer-overlay {
+  cursor: default;
+  background-color: transparent;
 }

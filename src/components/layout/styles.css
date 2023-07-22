@@ -1,0 +1,85 @@
+.drawer-sides {
+    pointer-events: none;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    grid-column-start: 1;
+    grid-row-start: 1;
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    grid-template-rows: repeat(1, minmax(0, 1fr));
+    align-items: flex-start;
+    justify-items: start;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    height: 100vh;
+    height: 100dvh;
+    scrollbar-width: none;
+}
+.drawer-sides::-webkit-scrollbar {
+    display: none;
+}
+.drawer-sides > .drawer-overlay {
+    position: sticky;
+    top: 0px;
+    place-self: stretch;
+    cursor: pointer;
+    background-color: transparent;
+    transition: background-color 0.2s cubic-bezier(0, 0, 0.58, 1);
+}
+.drawer-sides > * {
+    grid-column-start: 1;
+    grid-row-start: 1;
+}
+.drawer-sides > *:not(.drawer-overlay) {
+    transition: transform 0.4s cubic-bezier(0, 0, 0.58, 1);
+    transform: translateX(-100%);
+}
+[dir="rtl"] .drawer-sides > *:not(.drawer-overlay) {
+    transform: translateX(100%);
+}
+.drawer-toggle:checked ~ .drawer-sides {
+    pointer-events: auto;
+    visibility: visible;
+}
+.drawer-toggle:checked ~ .drawer-sides > *:not(.drawer-overlay) {
+    transform: translateX(0%);
+}
+.drawer-end .drawer-toggle ~ .drawer-sides {
+    justify-items: end;
+}
+.drawer-end .drawer-toggle ~ .drawer-sides > *:not(.drawer-overlay) {
+    transform: translateX(100%);
+}
+[dir="rtl"] .drawer-end .drawer-toggle ~ .drawer-sides > *:not(.drawer-overlay) {
+    transform: translateX(-100%);
+}
+.drawer-end .drawer-toggle:checked ~ .drawer-sides > *:not(.drawer-overlay) {
+    transform: translateX(0%);
+}
+.drawer-toggle:checked ~ .drawer-sides > .drawer-overlay {
+    background-color: hsl(0 0% 0%/0.4);
+}
+.drawer-open > .drawer-toggle ~ .drawer-sides {
+    pointer-events: auto;
+    visibility: visible;
+    position: sticky;
+    display: block;
+    width: auto;
+    overscroll-behavior: auto;
+}
+.drawer-open > .drawer-toggle ~ .drawer-sides > *:not(.drawer-overlay) {
+    transform: translateX(0%);
+}
+[dir="rtl"] .drawer-open > .drawer-toggle ~ .drawer-sides > *:not(.drawer-overlay) {
+    transform: translateX(0%);
+}
+.drawer-open > .drawer-toggle:checked ~ .drawer-sides {
+    pointer-events: auto;
+    visibility: visible;
+}
+.drawer-open > .drawer-toggle ~ .drawer-sides > .drawer-overlay {
+    cursor: default;
+    background-color: transparent;
+}

@@ -11,10 +11,11 @@ module.exports = {
       colors: {
         dark: "#292929",
         light: '#E5E5E5',
-        primary: '#4CB1E2',
+        ghost: '#d9d9d9',
+        primary: 'rgb(96 165 250)',
         darkPrimary: '4397C0',
       },
     },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 };
