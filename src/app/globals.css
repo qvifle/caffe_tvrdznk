@@ -2,29 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-::selection {
-  background: rgb(96 165 250);
-}
-
-::-webkit-scrollbar {
-  width: 12px;
-  color: inherit;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: #e5e5e5;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #292929;
-  transition: all 0.3s linear;
-  border-radius: 16px;
-}
-
 * {
-  @apply text-base font-normal text-dark dark:text-light;
+  @apply text-base font-normal text-dark dark:text-light ;
 }
 
 .button-primary {
@@ -48,95 +27,42 @@
 }
 
 .button_dish {
-  @apply py-2 text-[24px] text-light bg-dark border border-dark duration-100 rounded-xl hover:text-dark hover:bg-light;
+  @apply py-2 text-[24px] text-light bg-dark border border-dark duration-100 rounded-xl hover:bg-semiDark active:bg-light active:text-dark;
 }
 
-
-
-
-.drawer-side {
-  pointer-events: none;
-
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  grid-column-start: 1;
-  grid-row-start: 1;
-  display: grid;
-  width: 100%;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
-  grid-template-rows: repeat(1, minmax(0, 1fr));
-  align-items: flex-start;
-  justify-items: start;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  height: 100vh;
-  height: 100dvh;
-  scrollbar-width: none;
+.scrollbar-hide::-webkit-scrollbar {
+  width: 0;
 }
-.drawer-side::-webkit-scrollbar {
-  display: none;
-}
-.drawer-side > .drawer-overlay {
-  position: sticky;
-  top: 0px;
-  place-self: stretch;
-  cursor: pointer;
+
+.scrollbar-hide::-webkit-scrollbar-thumb {
   background-color: transparent;
-  transition: background-color 0.2s cubic-bezier(0, 0, 0.58, 1);
 }
-.drawer-side > * {
-  grid-column-start: 1;
-  grid-row-start: 1;
+
+::selection {
+  background: rgb(96 165 250);
 }
-.drawer-side > *:not(.drawer-overlay) {
-  transition: transform 0.4s cubic-bezier(0, 0, 0.58, 1);
-  transform: translateX(-100%);
+
+::-webkit-scrollbar {
+  width: 12px;
+  color: inherit;
+  background-color: #5678dc;
 }
-[dir="rtl"] .drawer-side > *:not(.drawer-overlay) {
-  transform: translateX(100%);
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #e5e5e5;
 }
-.drawer-toggle:checked ~ .drawer-side {
-  pointer-events: auto;
-  visibility: visible;
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #292929;
+  transition: all 0.3s linear;
+  border-radius: 16px;
 }
-.drawer-toggle:checked ~ .drawer-side > *:not(.drawer-overlay) {
-  transform: translateX(0%);
-}
-.drawer-end .drawer-toggle ~ .drawer-side {
-  justify-items: end;
-}
-.drawer-end .drawer-toggle ~ .drawer-side > *:not(.drawer-overlay) {
-  transform: translateX(100%);
-}
-[dir="rtl"] .drawer-end .drawer-toggle ~ .drawer-side > *:not(.drawer-overlay) {
-  transform: translateX(-100%);
-}
-.drawer-end .drawer-toggle:checked ~ .drawer-side > *:not(.drawer-overlay) {
-  transform: translateX(0%);
-}
-.drawer-toggle:checked ~ .drawer-side > .drawer-overlay {
-  background-color: hsl(0 0% 0%/0.4);
-}
-.drawer-open > .drawer-toggle ~ .drawer-side {
-  pointer-events: auto;
-  visibility: visible;
-  position: sticky;
-  display: block;
-  width: auto;
-  overscroll-behavior: auto;
-}
-.drawer-open > .drawer-toggle ~ .drawer-side > *:not(.drawer-overlay) {
-  transform: translateX(0%);
-}
-[dir="rtl"] .drawer-open > .drawer-toggle ~ .drawer-side > *:not(.drawer-overlay) {
-  transform: translateX(0%);
-}
-.drawer-open > .drawer-toggle:checked ~ .drawer-side {
-  pointer-events: auto;
-  visibility: visible;
-}
-.drawer-open > .drawer-toggle ~ .drawer-side > .drawer-overlay {
-  cursor: default;
-  background-color: transparent;
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
 }

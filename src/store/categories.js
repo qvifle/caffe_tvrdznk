@@ -1,9 +1,8 @@
 import { create } from "zustand";
-
 import axios from "axios";
 
 const url =
-  "http://localhost:1337/api/categories?populate[dishes][populate]=image";
+  "http://localhost:" + "1337/api/categories?populate[dishes][populate]=image";
 
 const useCategories = create((set, get) => ({
   categories: [],
@@ -11,6 +10,11 @@ const useCategories = create((set, get) => ({
   getData: async () => {
     const res = await axios(url);
     set({ categories: res.data.data });
+  },
+  getSessionStorageData: () => {
+    if (sessionStorage.getItem("cart")) {
+      set({ cart: JSON.parse(sessionStorage.getItem("cart")) });
+    }
   },
   addToCart: (category, dish) => {
     const categories = get().categories;
@@ -25,8 +29,12 @@ const useCategories = create((set, get) => ({
       );
 
       if (selectedDish) {
+        if (get().cart.includes({ ...selectedDish })) {
+          return;
+        }
         const updatedCart = [...get().cart, { ...selectedDish, count: 1 }];
         set({ cart: updatedCart });
+        sessionStorage.setItem("cart", JSON.stringify(updatedCart));
       }
     }
   },
@@ -53,10 +61,12 @@ const useCategories = create((set, get) => ({
     set({ cart: updatedCart });
   },
   deleteDish: (dish) => {
-    console.log(get().cart);
     const newCart = get().cart.filter((e) => e.attributes.title != dish);
     console.log(newCart);
     set({ cart: newCart });
+  },
+  clearCart: () => {
+    set({ cart: [] });
   },
 }));
 

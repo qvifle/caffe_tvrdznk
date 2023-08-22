@@ -23,6 +23,13 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/Map.jsx", "src/app/Mapgl.jsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/components/map/Map.tsx",
+    "src/app/Mapgl.jsx"
+, "src/components/3d/Experience.jsx"  ],
   "exclude": ["node_modules"]
 }

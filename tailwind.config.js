@@ -4,18 +4,20 @@ module.exports = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./node_modules/flowbite/**/*.js",
   ],
-  darkMode: 'class',
+  darkMode: "class",
   theme: {
     extend: {
       colors: {
         dark: "#292929",
-        light: '#E5E5E5',
-        ghost: '#d9d9d9',
-        primary: 'rgb(96 165 250)',
-        darkPrimary: '4397C0',
+        semiDark: "#3c3c3c",
+        light: "#E5E5E5",
+        semiLight: "#d5d5d5",
+        ghost: "#d9d9d9",
+        primary: "#5678dc",
       },
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [require("daisyui"), require("flowbite/plugin")],
 };

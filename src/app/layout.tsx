@@ -1,10 +1,8 @@
 import Header from "@/components/layout/Header";
-import { main_font } from "./fonts";
+import { main_font } from "../fonts/fonts";
 import "./globals.css";
 import type { Metadata } from "next";
 import Footer from "@/components/layout/Footer";
-import TProvider from "@/components/layout/TProvider";
-import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "Твердый Знак",
@@ -15,21 +13,16 @@ export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
-})
-  
-{
+}) {
   return (
     <html lang="en">
       <body
         className={`${main_font.className} bg-light dark:bg-dark flex flex-col min-h-screen scroll-smooth`}
       >
-        <TProvider>
-          <Header />
-          <main className="grow ">{children}</main>
-          <Footer />
-        </TProvider>      
+        <Header />
+        <main className="grow">{children}</main>
+        <Footer />
       </body>
-      
     </html>
   );
 }

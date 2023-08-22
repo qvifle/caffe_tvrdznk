@@ -1,25 +1,18 @@
-'use client'
-import React, { useEffect } from "react";
-import Category from './Category'
-import useCategories from '@/store/categories'
-
+import React from "react";
+import { second_font } from "../../fonts/fonts";
+import Navigation from "./Navigation";
+import MenuList from "./MenuList";
 
 const Menu = () => {
-  const getData = useCategories(state => state.getData)
-  const categories = useCategories(state => state.categories)
-
-
-  useEffect(() => {
-    getData()
-
-  },[] )
-
-  
   return (
-    <div className="w-full">
-      {categories && categories.map((e: any, key: any) => {
-        return <Category key={key} name={e.attributes.name} title={e.attributes.title} />;
-      })}
+    <div className="container">
+      <h2
+        className={`text-[64px] underline underline-offset-8 decoration-2 text-center w-full leading-[72px] mt-[64px] mb-[72px] ${second_font.className} font-semibold`}
+      >
+        Меню
+      </h2>
+      <Navigation />
+      <MenuList />
     </div>
   );
 };
